@@ -6,7 +6,7 @@ function CustomInput(props) {
     return (
          <div className="input">
             <label className="label-field" style={{ paddingRight: '10px' }}>{name}</label>
-            <input className="input-field" type="text" name={name} placeholder={name} onChange={(e) => { onChange(e) }} value={value} />
+            <input className="input-field" type="text" name={name} placeholder={name} onChange={onChange} value={value}/>
          </div>
     )
 }

@@ -1,0 +1,22 @@
+.input-container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.input-fields{
+   display: block;
+   background-color:thistle;
+   .button{
+       padding-left:205px;
+    display: flex;
+    justify-content: space-between;
+    .btn{
+        background-color:blue;
+        color: white;
+    }
+   }
+}

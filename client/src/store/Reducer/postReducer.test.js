@@ -33,7 +33,6 @@ it('should handle POST reducer', () => {
       }
     };
 
-    console.log("Reduces({}, startAction)",Reduces({}, startAction))
     expect(Reduces({}, startAction)).toEqual(mockPost);
   });
 
@@ -54,7 +53,6 @@ it('should handle POST reducer', () => {
       }
     };
 
-    console.log("Reduces({}, startAction)",Reduces({}, startAction))
     expect(Reduces({}, startAction)).toEqual(mockPost);
   })
 })

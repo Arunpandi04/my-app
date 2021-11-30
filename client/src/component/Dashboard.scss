@@ -11,12 +11,39 @@
    display: block;
    background-color:thistle;
    .button{
-       padding-left:205px;
+    padding: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     .btn{
         background-color:blue;
         color: white;
     }
    }
+}
+
+.datepicker{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .label{
+        width:35%;
+        padding-left: 10px;
+    }
+    // margin-left: 10px;
+    // padding-bottom: 10px;
+}
+
+.select-div{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .label{
+        width:35%;
+        padding-left: 10px;
+    }
+    .select{
+        width: 69%;
+    height: 35px;
+    margin-left: 34px;
+    }
 }

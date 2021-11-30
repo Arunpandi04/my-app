@@ -45,7 +45,6 @@ it('should dispatch actions with the correct type for post', async() => {
       const store = mockStore(initialState);
       return store.dispatch(createProfile({email:"arun@gmail.com"})).then(() => {
       let action = store.getActions();
-      console.log("POST action",action[0])
       expect(action[0].type).toBe(POST)
     });  
 })

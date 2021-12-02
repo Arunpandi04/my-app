@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import CustomInput from './customField/CustomInput'
 import './Dashboard.scss'
 import { createProfile, getProfile } from '../store/Actions/postAction'
@@ -33,7 +33,7 @@ const Dashboard = () => {
                 <CustomInput name="address" onChange={onChange} value={input.address} />
                 <div className="datepicker">
                     <span className="label"> DOB</span>
-                    <DatePicker  value={input.dob} placeholderText="DOB" onChange={(date) =>setInput({ ...input, ["dob"]: moment(date).format("DD/MM/YYYY") })} />
+                    <DatePicker name="dob"  value={input.dob} placeholderText="DOB" onChange={(date) =>setInput({ ...input, "dob": moment(date).format("DD/MM/YYYY") })} />
                 </div>
                 <div className="select-div">
                     <span className="label"> gender</span>

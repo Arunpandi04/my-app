@@ -1,5 +1,5 @@
 import axios from "axios";
-import { POST,GET } from "./types";
+import { POST,GET,ERROR } from "./types";
 
 export  const createProfile = (formData)=> {
     formData.password = "Admin"
@@ -17,6 +17,11 @@ export  const createProfile = (formData)=> {
                 type: POST,
                 payload: res.data,
             })
+        }else{
+          dispatch({
+            type: ERROR,
+            payload: res.data,
+        })
         }
      };
 };
@@ -36,6 +41,11 @@ export const getProfile = ()=> {
                 type: GET,
                 payload: res.data,
             })
+        }else{
+          dispatch({
+            type: ERROR,
+            payload: res.data,
+        })
         }
      };
 };

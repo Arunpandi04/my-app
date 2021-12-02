@@ -19,6 +19,11 @@ const initialState = {
           posts: payload,
           loading: false,
         };
+        case 'ERROR':
+          return {
+            ...state,
+            loading: true,
+          };
       default:
         return state;
     }

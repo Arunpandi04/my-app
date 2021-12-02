@@ -6,7 +6,6 @@ import { createProfile, getProfile } from '../store/Actions/postAction'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import "react-datepicker/dist/react-datepicker.css";
-import { fireEvent } from '@testing-library/react'
 
 const Dashboard = () => {
     const [input, setInput] = useState({ "firstName": "", "lastName": "", "email": "", "address": "", "dob": "","gender":"" })
@@ -19,7 +18,7 @@ const Dashboard = () => {
         dispatch(createProfile(input))
         setInput({ "firstName": "", "lastName": "", "email": "", "address": "", "dob": "","gender":"" })
     }
-    const selector = useSelector(state => state.post)
+    //const selector = useSelector(state => state.post)
 
     useEffect(() => {
         dispatch(getProfile())

@@ -24,14 +24,20 @@
 .datepicker {
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
   .label {
-    width: 35%;
-    padding-left: 10px;
+    width: 34%;
   }
-  // margin-left: 10px;
-  // padding-bottom: 10px;
+  @media screen and (max-width: 360px) {
+    padding: 10px;
+    display: block;
+    .label {
+      width: 34%;
+    }
+    .react-datepicker-wrapper {
+      padding-left: 21px;
+    }
+  }
 }
 
 .select-div {
@@ -45,5 +51,18 @@
     width: 69%;
     height: 35px;
     margin-left: 34px;
+  }
+  @media screen and (max-width: 360px) {
+    padding-top: 10px;
+  padding-bottom: 10px;
+  .label {
+    width: 20%;
+    padding-left: 10px;
+  }
+  .select {
+    width: 75%;
+    height: 35px;
+    margin-left: 29px;
+  }
   }
 }

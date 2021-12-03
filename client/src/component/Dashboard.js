@@ -42,14 +42,9 @@ const Dashboard = () => {
     <div className="input-container">
       <div className="input-fields">
         <CustomInput
-          name="firstName"
-          onChange={onChange}
-          value={input.firstName}
-        />
+          name="firstName" onChange={onChange} value={input.firstName} />
         <CustomInput
-          name="lastName"
-          onChange={onChange}
-          value={input.lastName}
+          name="lastName" onChange={onChange} value={input.lastName}
         />
         <CustomInput name="email" onChange={onChange} value={input.email} />
         <CustomInput name="address" onChange={onChange} value={input.address} />

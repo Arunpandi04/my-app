@@ -1,5 +1,7 @@
 import "./App.css";
-import Dashboard from "./component/Dashboard";
+import Register from "./component/RegisterComponent/Register";
+import Login from "./component/Login/Login";
+import Dashboard from "./component/Dashboard/Dashboard";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
@@ -10,7 +12,9 @@ function App() {
     <Provider store={store}>
       <Router>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Login />} />
+          <Route exact strict path="/sigup" element={<Register />} />
+          <Route exact strict path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </Provider>

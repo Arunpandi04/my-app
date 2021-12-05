@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import CustomInput from "./customField/CustomInput";
-import "./Dashboard.scss";
-import { createProfile, getProfile } from "../store/Actions/postAction";
+import { useDispatch ,useSelector} from "react-redux";
+import CustomInput from "../customField/CustomInput";
+import "./Register.scss";
+import { createProfile, getProfile } from "../../store/Actions/postAction";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
+import Dashboard from "../Dashboard/Dashboard";
 
-const Dashboard = () => {
+const Register = () => {
   const [input, setInput] = useState({
     firstName: "",
     lastName: "",
@@ -15,6 +16,7 @@ const Dashboard = () => {
     address: "",
     dob: "",
     gender: "",
+    password:""
   });
   const onChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -30,26 +32,26 @@ const Dashboard = () => {
       address: "",
       dob: "",
       gender: "",
+      password:""
     });
   };
-  //const selector = useSelector(state => state.post)
-
-  useEffect(() => {
-    dispatch(getProfile());
-  }, [dispatch]);
-
+  
+  const selector = useSelector(state => state.post)
+  if(!selector.loading){
+    console.log("jsksfbdzfF")
+      return <Dashboard />
+  }
   return (
     <div className="input-container">
       <div className="input-fields">
-        <CustomInput
-          name="firstName" onChange={onChange} value={input.firstName} />
-        <CustomInput
-          name="lastName" onChange={onChange} value={input.lastName}
-        />
-        <CustomInput name="email" onChange={onChange} value={input.email} />
+      <h3 className="text-font" style={{textAlign:"center"}}> REGISTER page</h3>
+        <CustomInput type="text" name="firstName" onChange={onChange} value={input.firstName} />
+        <CustomInput type="text" name="lastName" onChange={onChange} value={input.lastName} />
+        <CustomInput type="email" name="email" onChange={onChange} value={input.email} />
         <CustomInput name="address" onChange={onChange} value={input.address} />
+        <CustomInput type="password" name="password" onChange={onChange} value={input.password} />
         <div className="datepicker">
-          <span className="label"> DOB</span>
+          <span className="text-font label">dob</span>
           <DatePicker
             name="dob"
             value={input.dob}
@@ -60,7 +62,7 @@ const Dashboard = () => {
           />
         </div>
         <div className="select-div">
-          <span className="label"> gender</span>
+          <span className="text-font label">gender</span>
           <select
             className="select"
             name="gender"
@@ -82,4 +84,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Register;

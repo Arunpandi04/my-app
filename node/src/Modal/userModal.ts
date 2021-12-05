@@ -11,7 +11,8 @@ const UserSchema = new mongoose.Schema({
   lastName: String,
   gender:{type:Gender},
   phoneNumber:Number,
-  dob:Date
+  dob:String,
+  password:String
   },{timestamps: true});
   
   export default mongoose.model('user', UserSchema);

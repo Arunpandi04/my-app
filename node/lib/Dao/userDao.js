@@ -46,20 +46,19 @@ var userDao = /** @class */ (function () {
     }
     userDao.prototype.create_cart = function (body) {
         return __awaiter(this, void 0, void 0, function () {
-            var data, result;
+            var result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        console.log("body", body);
-                        data = [];
-                        data.push(body);
+                        console.log("body", body.password);
                         result = new userModal_1.default({
-                            firstName: "",
-                            lastName: "",
-                            gender: "",
-                            dob: "",
-                            address: "",
-                            email: body.email
+                            firstName: body.firstName,
+                            lastName: body.lastName,
+                            gender: body.gender,
+                            dob: body.dob,
+                            address: body.address,
+                            email: body.email,
+                            password: body.password
                         });
                         return [4 /*yield*/, result.save()];
                     case 1: return [2 /*return*/, _a.sent()];
@@ -71,7 +70,7 @@ var userDao = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, userModal_1.default.findById(id)];
+                    case 0: return [4 /*yield*/, userModal_1.default.findById(id).select("-password")];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -91,7 +90,7 @@ var userDao = /** @class */ (function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, userModal_1.default.findOneAndUpdate({ _id: id }, data)];
+                    case 0: return [4 /*yield*/, userModal_1.default.findOneAndUpdate({ _id: id }, data).select("-password")];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });

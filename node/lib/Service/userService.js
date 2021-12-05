@@ -60,6 +60,7 @@ var userDao_1 = require("../Dao/userDao");
 var validation_1 = require("../Validation/validation");
 var Response_1 = require("../Utils/Response");
 var jwt = __importStar(require("jsonwebtoken"));
+var lodash_1 = require("lodash");
 var response = new Response_1.Response();
 var user_validate = new validation_1.User();
 var userService = /** @class */ (function () {
@@ -67,30 +68,49 @@ var userService = /** @class */ (function () {
         if (UserDao === void 0) { UserDao = new userDao_1.userDao(); }
         this.UserDao = UserDao;
     }
-    userService.prototype.user = function (body) {
+    userService.prototype.signup = function (body) {
         return __awaiter(this, void 0, void 0, function () {
-            var data, token;
+            var isUser, data, token;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        if (body.password !== 'Admin') {
-                            return [2 /*return*/, response.error("password incorrect")];
-                        }
-                        return [4 /*yield*/, this.UserDao.findone(body.email)];
+                    case 0: return [4 /*yield*/, this.UserDao.findone(body.email)];
                     case 1:
-                        data = _a.sent();
-                        if (!!data) return [3 /*break*/, 3];
+                        isUser = _a.sent();
+                        if (!!isUser) return [3 /*break*/, 3];
                         return [4 /*yield*/, this.UserDao.create_cart(body)];
                     case 2:
                         data = _a.sent();
-                        _a.label = 3;
-                    case 3:
                         token = jwt.sign({
                             expiresIn: "3h",
                             data: body.email
                         }, 'secret');
-                        console.log("token", token);
-                        return [2 /*return*/, response.Success(data, token, "login success")];
+                        return [2 /*return*/, response.Success((0, lodash_1.omit)(data, 'password'), token, "signup success")];
+                    case 3: return [2 /*return*/, response.falied("userAlready exist")];
+                }
+            });
+        });
+    };
+    userService.prototype.signin = function (body) {
+        return __awaiter(this, void 0, void 0, function () {
+            var data, token;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.UserDao.findone(body.email)];
+                    case 1:
+                        data = _a.sent();
+                        console.log("data", data, body.password);
+                        if (data.password === body.password) {
+                            token = jwt.sign({
+                                expiresIn: "3h",
+                                data: body.email
+                            }, 'secret');
+                            console.log("token", (0, lodash_1.omit)(data, 'password'));
+                            return [2 /*return*/, response.Success((0, lodash_1.omit)(data, 'password'), token, "signin success")];
+                        }
+                        else {
+                            return [2 /*return*/, response.falied("email or password is incorrect")];
+                        }
+                        return [2 /*return*/];
                 }
             });
         });

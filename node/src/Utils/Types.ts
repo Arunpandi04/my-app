@@ -41,7 +41,7 @@ export interface Unauthorized{
     message: String,
 };
   
-export interface data{
+export interface signupData{
     profilePicture:string,
     firstName:string,
     lastName:string,

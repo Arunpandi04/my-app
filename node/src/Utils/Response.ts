@@ -1,10 +1,17 @@
 export class Response {
-  public Success(data: any, token: any,message:string) {
+  public Success(data: any, token: string|null,message:string) {
     return {
       success: true,
       statusCode: 200,
       data: data,
       token: token,
+      message:message
+    };
+  }
+  public falied(message:string) {
+    return {
+      success: false,
+      statusCode: 404,
       message:message
     };
   }

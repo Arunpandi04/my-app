@@ -12,8 +12,9 @@ var userRoutes = /** @class */ (function () {
     userRoutes.prototype.userroutes = function (app) {
         console.log("routes");
         app.route('/user/:id').put(this.UserController.updateuser);
-        app.route('/login').post(this.UserController.login);
-        app.route('/user/:id').get(this.UserController.getUser);
+        app.route('/signup').post(this.UserController.signup);
+        app.route('/signin').post(this.UserController.signin);
+        app.route('/user/:id').get(Authorization.Auth, this.UserController.getUser);
     };
     return userRoutes;
 }());

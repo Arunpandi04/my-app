@@ -13,6 +13,13 @@ var Response = /** @class */ (function () {
             message: message
         };
     };
+    Response.prototype.falied = function (message) {
+        return {
+            success: false,
+            statusCode: 404,
+            message: message
+        };
+    };
     Response.prototype.error = function (message) {
         return {
             success: false,

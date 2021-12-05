@@ -1,11 +1,12 @@
 import { fireEvent, render } from "@testing-library/react";
 import { act } from "@testing-library/react-hooks";
-import Dashboard from "./Dashboard";
+import Register from "./Register";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
-import { createProfile, getProfile } from "../store/Actions/postAction";
+import { createProfile, getProfile } from "../../store/Actions/postAction";
 import moxios from "moxios";
+import Dashboard from "../Dashboard/Dashboard";
 
 import React, { useState as useStateMock } from "react";
 
@@ -16,11 +17,10 @@ jest.mock("react", () => ({
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
-const store = mockStore({});
 // const setup = (name) => {
 //     const utils = render(
 //         <Provider store={store}>
-//     <Dashboard />
+//     <Register />
 //     </Provider>
 //     )
 
@@ -30,7 +30,7 @@ const store = mockStore({});
 //         ...utils,
 //     }
 // }
-describe("Dashboard component", () => {
+describe("Register component", () => {
   const setState = jest.fn();
   beforeEach(() => {
     moxios.install();
@@ -68,12 +68,14 @@ describe("Dashboard component", () => {
     jest.clearAllMocks();
   });
 
-  test("renders Dashboard component input filed", async () => {
+  test("renders Register component input filed", async () => {
+    const store = mockStore({post:{loading:true}});
     const util = render(
       <Provider store={store}>
-        <Dashboard />
+        <Register />
       </Provider>
-    );
+    )
+    
     act(() => {
       const fillOutField = (value, name) => {
         const input = util.getByPlaceholderText(name);
@@ -83,10 +85,11 @@ describe("Dashboard component", () => {
     });
     expect(setState).toHaveBeenCalledTimes(2);
   });
-  it("renders Dashboard component submit button", async () => {
+  it("renders Register component submit button", async () => {
+    const store = mockStore({post:{loading:true}});
     const util = render(
       <Provider store={store}>
-        <Dashboard />
+        <Register />
       </Provider>
     );
     const btn = util.getByText("submit");
@@ -94,14 +97,24 @@ describe("Dashboard component", () => {
     expect(store.dispatch(createProfile({ email: "arun@gmail.com" })))
       .toHaveBeenCalled;
   });
-  it("renders Dashboard component Date picker", async () => {
+  it("renders Register component Date picker", async () => {
+    const store = mockStore({post:{loading:true}});
     const util = render(
       <Provider store={store}>
-        <Dashboard />
+        <Register />
       </Provider>
     );
     const btn = util.getByPlaceholderText("DOB");
     fireEvent.change(btn, { target: { value: "2018-01-04" } });
     expect(setState).toHaveBeenCalledTimes(2);
+  });
+  it("renders Register component Date picker", async () => {
+    const store = mockStore({post:{loading:false,posts:{data:{_id : "sjafajfd"}}}});
+    const util = render(
+      <Provider store={store}>
+        <Register />
+      </Provider>
+    );
+    expect(setState).toHaveBeenCalledTimes(0);
   });
 });

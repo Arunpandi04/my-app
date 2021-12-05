@@ -19,6 +19,8 @@
     "express": "^4.17.1",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "mongoose": "^5.12.2",
     "nodemon": "^2.0.7",
     "ts-node": "^9.1.1"
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.10",
     "@types/jest": "^26.0.22",
+    "@types/lodash": "^4.14.177",
     "@types/mongoose": "^5.10.4",
     "@types/node": "^14.14.41",
     "@types/supertest": "^2.0.11",

@@ -58,14 +58,31 @@ var userController = /** @class */ (function () {
             });
         });
     };
-    userController.prototype.login = function (req, res) {
+    userController.prototype.signup = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var body, data;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         body = req.body;
-                        return [4 /*yield*/, UserService.user(body)];
+                        return [4 /*yield*/, UserService.signup(body)];
+                    case 1:
+                        data = _a.sent();
+                        console.log("data--->", data);
+                        res.status(data.statusCode).json(data);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    userController.prototype.signin = function (req, res) {
+        return __awaiter(this, void 0, void 0, function () {
+            var body, data;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        body = req.body;
+                        return [4 /*yield*/, UserService.signin(body)];
                     case 1:
                         data = _a.sent();
                         console.log("data--->", data);

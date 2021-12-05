@@ -8,11 +8,7 @@ const initialState = {
     const { type, payload } = action;
     switch (type) {
       case 'POST':
-        return {
-          ...state,
-          posts: payload,
-          loading: false,
-        };
+      case 'LOGIN':
         case 'GET':
         return {
           ...state,

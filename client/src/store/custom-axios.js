@@ -6,7 +6,7 @@ const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((config) => {
   console.log("akhsashakd")
   // add token to request headers
-  config.headers['authorization'] = localStorage.getItem('token');
+  config.headers['authorization'] = "Bearer "+JSON.parse(localStorage.getItem('token'))
   config.headers['Content-Type']= 'application/json'
   return config;
 });

@@ -9,9 +9,8 @@ const initialState = {
     switch (type) {
       case 'POST':
       case 'LOGIN':
-        case 'GET':
+      case 'GET':
         return {
-          ...state,
           posts: payload,
           loading: false,
         };

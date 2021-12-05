@@ -14,3 +14,10 @@
     font-style: normal;
     font-variant: small-caps;
   }
+
+  @media screen and (max-width: 480px) {
+    .label-field{
+        display: block;
+        width: 20%;
+    } 
+  }

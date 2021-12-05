@@ -13,7 +13,7 @@ export  const createProfile = (formData)=> {
         // }).catch((e)=>console.log("reeoe"))
         // console.log("formData",formData)
         const res = await axios.post('http://localhost:3000/signup',formData).catch((e)=>console.log("error"))
-       console.log("ressss",res)
+        console.log("res?.data.register --->",res?.data.token)
         if(res?.data){
           localStorage.setItem("token", JSON.stringify(res?.data.token))
             dispatch({
@@ -38,6 +38,7 @@ export const Loggedin = (formData)=> {
       //   data : formData
       // }).catch((e)=>console.log("reeoe"))
       const res = await axios.post('http://localhost:3000/signin',formData).catch((e)=>console.log("error"))
+      console.log("res?.data.loggedin --->",res?.data.token)
       if(res?.data){
         localStorage.setItem("token", JSON.stringify(res?.data.token))
           dispatch({
@@ -64,6 +65,7 @@ export const getProfile = (id)=> {
       //   }
       // }).catch((e)=>console.log("reeoe"))
         const res = await axios.get(`http://localhost:3000/user/${id}`).catch((e)=>console.log("error"))      
+        console.log("res?.data.GET --->",res?.data)
         if(res?.data){
             dispatch({
                 type: GET,

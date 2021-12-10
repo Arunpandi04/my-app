@@ -6,7 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
-
+import { Profile } from "./component/Profile";
+import { Links } from "./component/Links";
 function App() {
   return (
     <Provider store={store}>
@@ -15,6 +16,8 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route exact strict path="/sigup" element={<Register />} />
           <Route exact strict path="/dashboard" element={<Dashboard />} />
+          <Route exact strict path="/profile" element={<Profile />} />
+          <Route exact strict path="/link" element={<Links />} />
         </Routes>
       </Router>
     </Provider>

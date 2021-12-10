@@ -1,20 +1,12 @@
 .container-dash{
     overflow-x: hidden;
     overflow-y: scroll;
-    display: grid;
-    grid-template-areas:
-      'menu main main main'
-      'menu main main main '
-      'menu main main main';
 }
 
 .container-dash .navbar {
     height: 100vh;
     background-color: #6289e6 !important;
   }
-.back-ground{
-background-color: #6289e6 !important;
-}
 .text-color{
     color: white !important;
     font-size: 20px !important;
@@ -43,9 +35,6 @@ background-color: #6289e6 !important;
     list-style-type: none !important;
     background-color: #6289e6 !important;
 }
-.navs ul{
-    list-style-type: none !important;
-}
 .navs a {
     border-bottom: 1px solid #6a92ee;
     border-top: 1px solid #557ddb;
@@ -55,10 +44,6 @@ background-color: #6289e6 !important;
     font-weight: 500;
     padding: 28px 20px;
     text-decoration: none;
-}
-.navs i {
-    margin-right: 15px;
-    color: #5584ff;
 }
  @media screen and (max-width: 1200px) {
     .navs a {
@@ -72,10 +57,6 @@ background-color: #6289e6 !important;
         text-decoration: none;
     }
     
-    .navs i {
-        margin-right: 15px;
-        color: #5584ff;
-    }
     .text-color{
         color: white !important;
         font-size: 14px !important;
@@ -95,4 +76,10 @@ background-color: #6289e6 !important;
 
 #offcanvasNavbar{
     width: 20%;
+}
+
+.nav-head{
+    text-align:"cente";
+    background-color:rgb(132, 121, 224) !important;
+    color: black !important;
 }

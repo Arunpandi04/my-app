@@ -13,8 +13,8 @@ export class userController{
     }
 
     public async signup(req: Request, res: Response): Promise<void> {
-        const  body : signupData= req.body
-        const data :post_response | get_response| error_response |fail_response = await UserService.signup(body);
+        const  body = req.body
+        const data  = await UserService.signup(body);
         console.log("data--->",data)
         res.status(data.statusCode).json(data);
     }
@@ -26,7 +26,7 @@ export class userController{
     }
     public async updateuser(req: Request, res: Response): Promise<void> {
         const id= req.params.id
-        const body : signupData= req.body;
+        const body : any= req.body;
         const userdata :post_response | get_response| error_response |fail_response= await UserService.updateuser(id,body);
         res.status(userdata.statusCode).json(userdata);
     }

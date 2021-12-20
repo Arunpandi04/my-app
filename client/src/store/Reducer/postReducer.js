@@ -2,6 +2,7 @@
 const initialState = {
     posts: [],
     loading: true,
+    isAuthenticate:false
   };
   
  const Reduces = (state = initialState, action) =>{
@@ -13,11 +14,13 @@ const initialState = {
         return {
           posts: payload,
           loading: false,
+          isAuthenticate:true
         };
         case 'ERROR':
           return {
             ...state,
             loading: true,
+            isAuthenticate:false
           };
       default:
         return state;

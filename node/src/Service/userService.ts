@@ -12,8 +12,8 @@ export class userService{
     
     constructor(public UserDao: userDao = new userDao()) { }
     public async signup(body: any){
-        // let isUser :any = await this.UserDao.findone(body.email)
-        // if(!isUser){
+        let isUser :any = await this.UserDao.findone(body.email)
+        if(!isUser){
             const data = await this.UserDao.create_cart(body);
 console.log("dataa",data)
             const token = jwt.sign({
@@ -22,9 +22,9 @@ console.log("dataa",data)
             }, 'secret');
             
             return response.Success(omit(data,'password'),token,"signup success")
-        // }else{
-        //     return response.falied("userAlready exist")
-        // }
+        }else{
+            return response.falied("userAlready exist")
+        }
     }
     public async signin(body:any): Promise<post_response | get_response | error_response |fail_response>  {
         let data :any = await this.UserDao.findone(body.email)

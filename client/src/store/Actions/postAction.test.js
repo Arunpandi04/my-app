@@ -16,8 +16,9 @@ jest.mock('../custom-axios', () => {
 const response = {
   success: true,
   statusCode: 200,
-  data: {
-    id: "61a4ab018ba40873e6e48c7e",
+data:
+{  data: {
+    _id: "61a4ab018ba40873e6e48c7e",
     firstName: "",
     lastName: "",
     gender: "",
@@ -27,7 +28,8 @@ const response = {
     createdAt: "2021-11-29T10:27:13.326Z",
     updatedAt: "2021-11-29T10:27:13.326Z",
     __v: 0
-  },
+  }
+},
   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzSW4iOiIzaCIsImRhdGEiOiJhcnVuQGdtYWlsLmNvbSIsImlhdCI6MTYzODI0ODQwN30.b1ZfJXZ5wwjHQ37z_H82cHLodkZ1rHZiiddLxKwq3Bo",
   message: "login success"
 }
@@ -82,13 +84,13 @@ describe('user Post Action', () => {
     });
   })
   it('should dispatch actions with the correct type for Error in post', async () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 401,
-        //response: "response",
-      });
-    });
+    // moxios.wait(() => {
+    //   const request = moxios.requests.mostRecent();
+    //   request.respondWith({
+    //     status: 401,
+    //     //response: "response",
+    //   });
+    // });
     axios.post.mockResolvedValue()
     const store = mockStore(initialState);
     return store.dispatch(createProfile({ email: "arun@gmail.com" })).then(() => {

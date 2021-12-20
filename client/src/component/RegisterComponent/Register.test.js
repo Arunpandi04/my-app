@@ -5,8 +5,8 @@ import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import thunk from "redux-thunk";
 import { createProfile, getProfile } from "../../store/Actions/postAction";
-import moxios from "moxios";
 import Dashboard from "../Dashboard/Dashboard";
+import axios from '../../store/custom-axios';
 
 import React, { useState as useStateMock } from "react";
 
@@ -14,6 +14,33 @@ jest.mock("react", () => ({
   ...jest.requireActual("react"),
   useState: jest.fn(),
 }));
+
+jest.mock('../../store/custom-axios', () => {
+  return {
+    post: jest.fn(),
+    get: jest.fn(),
+  };
+});
+
+const response = {
+  success: true,
+  statusCode: 200,
+  data: {
+    _id: "61a4ab018ba40873e6e48c7e",
+    firstName: "",
+    lastName: "",
+    gender: "",
+    dob: null,
+    address: "",
+    email: "arun@gmail.com",
+    createdAt: "2021-11-29T10:27:13.326Z",
+    updatedAt: "2021-11-29T10:27:13.326Z",
+    __v: 0,
+  },
+  token:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzSW4iOiIzaCIsImRhdGEiOiJhcnVuQGdtYWlsLmNvbSIsImlhdCI6MTYzODI0ODQwN30.b1ZfJXZ5wwjHQ37z_H82cHLodkZ1rHZiiddLxKwq3Bo",
+  message: "login success",
+};
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -33,38 +60,10 @@ const mockStore = configureStore(middlewares);
 describe("Register component", () => {
   const setState = jest.fn();
   beforeEach(() => {
-    moxios.install();
     useStateMock.mockImplementation((init) => [init, setState]);
-    const response = {
-      success: true,
-      statusCode: 200,
-      data: {
-        id: "61a4ab018ba40873e6e48c7e",
-        firstName: "",
-        lastName: "",
-        gender: "",
-        dob: null,
-        address: "",
-        email: "arun@gmail.com",
-        createdAt: "2021-11-29T10:27:13.326Z",
-        updatedAt: "2021-11-29T10:27:13.326Z",
-        __v: 0,
-      },
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHBpcmVzSW4iOiIzaCIsImRhdGEiOiJhcnVuQGdtYWlsLmNvbSIsImlhdCI6MTYzODI0ODQwN30.b1ZfJXZ5wwjHQ37z_H82cHLodkZ1rHZiiddLxKwq3Bo",
-      message: "login success",
-    };
-
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        response: response,
-      });
-    });
+    axios.post.mockResolvedValue(response)
   });
   afterEach(() => {
-    moxios.uninstall();
     jest.clearAllMocks();
   });
 
@@ -115,6 +114,6 @@ describe("Register component", () => {
         <Register />
       </Provider>
     );
-    expect(setState).toHaveBeenCalledTimes(0);
+    expect(setState).toHaveBeenCalledTimes(1);
   });
 });

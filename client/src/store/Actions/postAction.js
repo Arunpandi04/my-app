@@ -38,9 +38,10 @@ export const Loggedin = (formData)=> {
       //   data : formData
       // }).catch((e)=>console.log("reeoe"))
       const res = await axios.post('http://localhost:3000/signin',formData).catch((e)=>console.log("error"))
-      console.log("res?.data.loggedin --->",res?.data.token)
+      console.log("res?.data.loggedin --->",res?.data)
       if(res?.data){
         localStorage.setItem("token", JSON.stringify(res?.data.token))
+        localStorage.setItem("id", JSON.stringify(res?.data?.data._id))
           dispatch({
               type: LOGIN,
               payload: res.data,

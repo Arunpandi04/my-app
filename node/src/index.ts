@@ -32,18 +32,18 @@ class App {
    }
 
    private async mongoSetup(){
-   //  await mongoose.connect(this.mongoUrl, {useCreateIndex: true,useUnifiedTopology: true,
-   //  useFindAndModify: false, useNewUrlParser: true}).then(() => console.log('mongoDB connected...'));
-   try {
-      await createConnection(config).then(()=>console.log("DataBase Connected"))
-    } catch (error) {
-      console.log('Error while connecting to the database', error);
-      return error;
-    }
+    await mongoose.connect(this.mongoUrl, {useCreateIndex: true,useUnifiedTopology: true,
+    useFindAndModify: false, useNewUrlParser: true}).then(() => console.log('mongoDB connected...'));
+   // try {
+   //    await createConnection(config).then(()=>console.log("DataBase Connected",process.env.PORT))
+   //  } catch (error) {
+   //    console.log('Error while connecting to the database', error);
+   //    return error;
+   //  }
    }
    private routes():void{
       cron.schedule('5 * * * * *', () => {
-  //console.log('running a task every minute at the 5th second');
+  console.log('running a task every minute at the 5th second');
   
 });
       

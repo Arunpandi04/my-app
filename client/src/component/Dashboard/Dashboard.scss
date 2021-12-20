@@ -25,10 +25,10 @@
 .content{
     height: 150vh;  /** just to make it scrollable. can be removed */
   min-height: 100vh;
-  padding-top: 1%;
   position: relative;
   width: 100%;
-  padding: 16px 16px 16px calc(25% + 16px)
+  padding-left: calc(16.2% + 6px) ;
+  //padding: 6px 6px 6px calc(17% + 6px)
 }
 
 .navs{
@@ -82,4 +82,27 @@
     text-align:"cente";
     background-color:rgb(132, 121, 224) !important;
     color: black !important;
+}
+
+.header{
+    position: sticky;
+    margin-top:0px;
+    top: 0;
+    width: 100%;
+    height: 14.3vh;
+    background-color:rgb(132, 121, 224) !important;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.drop-down > button{
+    background-color: rgb(132, 121, 224) !important;
+    border-color: rgb(132, 121, 224) !important;
+}
+
+.drop-down > button:hover{
+    background-color: rgb(132, 121, 224) !important;
+    border-color: rgb(132, 121, 224) !important;
+    color: white !important;
 }

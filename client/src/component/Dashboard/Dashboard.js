@@ -34,7 +34,7 @@ const Dashboard = () => {
             >
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                <h4 className="nav-head">My App</h4>
+                <h4>My App</h4>
                   <Nav.Link href="/profile">Home</Nav.Link>
                   <Nav.Link href="/link">Link</Nav.Link>
                 </Nav>
@@ -46,7 +46,7 @@ const Dashboard = () => {
           className="col-sm-2 d-none d-md-block  sidebar navs"
           activeKey="/dashboard"
         >
-          <h4 className="nav-head"> My App </h4>
+          <h4> My App </h4>
           <Nav.Item>
             <Nav.Link href="/dashboard">Active</Nav.Link>
           </Nav.Item>

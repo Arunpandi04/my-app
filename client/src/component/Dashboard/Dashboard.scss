@@ -20,6 +20,7 @@
     z-index: 1;
     left: 0;
     overflow-x: hidden;
+    transition: all 0.5s ease;
 }
 
 .content{
@@ -27,7 +28,7 @@
   min-height: 100vh;
   position: relative;
   width: 100%;
-  padding-left: calc(16.2% + 6px) ;
+  padding-left: calc(16.2% + 3px) ;
   //padding: 6px 6px 6px calc(17% + 6px)
 }
 
@@ -44,6 +45,11 @@
     font-weight: 500;
     padding: 28px 20px;
     text-decoration: none;
+}
+.navs h4{
+    color: #557ddb !important;
+    text-align:center;
+    height: 10vh;
 }
  @media screen and (max-width: 1200px) {
     .navs a {
@@ -70,7 +76,7 @@
 }
 
 .nav-bar{
-   
+
     height: 100vh;
 }
 
@@ -78,10 +84,10 @@
     width: 20%;
 }
 
-.nav-head{
-    text-align:"cente";
-    background-color:rgb(132, 121, 224) !important;
-    color: black !important;
+.sidebar h4{
+    text-align:center;
+    height: 10vh;
+    color: white !important;
 }
 
 .header{
@@ -89,8 +95,8 @@
     margin-top:0px;
     top: 0;
     width: 100%;
-    height: 14.3vh;
-    background-color:rgb(132, 121, 224) !important;
+    height: 11.7vh;
+    background-color:burlywood !important;
     display: flex;
     justify-content: flex-end;
     align-items: center;

@@ -13,7 +13,14 @@ const Dashboard = () => {
       dispatch(getProfile(JSON.parse(id)));
   }, [dispatch]);
 
+  const logout =()=>{
+    localStorage.clear();localStorage.clear();
+  }
   console.log("token--->", selector);
+
+  if(selector.loading){
+    return <div>Loading.....</div>
+  }
   return (
     <>
       <div className="sidebar">
@@ -25,9 +32,9 @@ const Dashboard = () => {
               aria-labelledby="offcanvasNavbarLabel"
               placement="start"
             >
-              <Offcanvas.Header closeButton></Offcanvas.Header>
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
+                <h4 className="nav-head">My App</h4>
                   <Nav.Link href="/profile">Home</Nav.Link>
                   <Nav.Link href="/link">Link</Nav.Link>
                 </Nav>
@@ -37,14 +44,10 @@ const Dashboard = () => {
         </div>
         <Nav
           className="col-sm-2 d-none d-md-block  sidebar navs"
-          activeKey="/home"
+          activeKey="/dashboard"
         >
+          <h4 className="nav-head"> My App </h4>
           <Nav.Item>
-            <Nav.Link href="/dashboard" className="nav-head">
-              My App
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item className="">
             <Nav.Link href="/dashboard">Active</Nav.Link>
           </Nav.Item>
           <Nav.Item>
@@ -65,7 +68,7 @@ const Dashboard = () => {
             <Dropdown.Menu>
               <Dropdown.Item href="/profile">Profile</Dropdown.Item>
               <Dropdown.Item href="/link">Menu Item</Dropdown.Item>
-              <Dropdown.Item href="#">Logout</Dropdown.Item>
+              <Dropdown.Item href="/" onClick={logout}>Signout</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>}
         </div>

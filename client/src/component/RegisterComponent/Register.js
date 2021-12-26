@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import Dashboard from "../Dashboard/Dashboard";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [input, setInput] = useState({
@@ -79,6 +80,9 @@ const Register = () => {
             submit
           </button>
         </div>
+        <h5 style={{ textAlign: "center" }}>
+          Do u have Account <Link to="/">signin</Link>
+        </h5>
       </div>
     </div>
   );

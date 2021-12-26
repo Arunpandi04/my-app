@@ -11,16 +11,17 @@ const Login = () => {
   const onChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+  const selector = useSelector((state) => state.post);
   const dispatch = useDispatch();
   const onSubmit = () => {
     dispatch(Loggedin(input));
+    if(!selector.loading){
     setInput({
       email: "",
       password: "",
     });
+  }
   };
-
-  const selector = useSelector((state) => state.post);
 
   if (!selector.loading) {
     return <Navigate to='/dashboard' />;

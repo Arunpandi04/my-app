@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch ,useSelector} from "react-redux";
 import CustomInput from "../customField/CustomInput";
 import "./Register.scss";
-import { createProfile, getProfile } from "../../store/Actions/postAction";
+import { createProfile } from "../../store/Actions/postAction";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,6 +10,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const[showPass,setShowPass]=useState(false)
   const [input, setInput] = useState({
     firstName: "",
     lastName: "",
@@ -18,11 +19,15 @@ const Register = () => {
     dob: "",
     gender: "",
     password:""
-  });
+  })
+
   const onChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
-  };
+  }
 
+  const clickHandler=()=>{
+    setShowPass(!showPass)
+}
   const dispatch = useDispatch();
   const onSubmit = () => {
     dispatch(createProfile(input));
@@ -39,7 +44,6 @@ const Register = () => {
   
   const selector = useSelector(state => state.post)
   if(!selector.loading){
-    console.log("jsksfbdzfF")
       return <Dashboard />
   }
   return (
@@ -50,7 +54,8 @@ const Register = () => {
         <CustomInput type="text" name="lastName" onChange={onChange} value={input.lastName} />
         <CustomInput type="email" name="email" onChange={onChange} value={input.email} />
         <CustomInput name="address" onChange={onChange} value={input.address} />
-        <CustomInput type="password" name="password" onChange={onChange} value={input.password} />
+        <CustomInput type="password" name="password" onChange={onChange} value={input.password} showPass={showPass}
+          clickHandler={clickHandler} />
         <div className="datepicker">
           <span className="text-font label">dob</span>
           <DatePicker

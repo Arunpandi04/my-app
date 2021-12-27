@@ -7,14 +7,15 @@ import { Link } from "react-router-dom";
 import  { Navigate } from 'react-router'
 
 const Login = () => {
-  const [input, setInput] = useState({ email: "", password: "" });
+  const [input, setInput] = useState({ email: "", password: "" })
+  const[showPass,setShowPass]=useState(false)
   const onChange = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
+    setInput({ ...input, [e.target.name]: e.target.value })
   };
-  const selector = useSelector((state) => state.post);
-  const dispatch = useDispatch();
+  const selector = useSelector((state) => state.post)
+  const dispatch = useDispatch()
   const onSubmit = () => {
-    dispatch(Loggedin(input));
+    dispatch(Loggedin(input))
     if(!selector.loading){
     setInput({
       email: "",
@@ -22,9 +23,12 @@ const Login = () => {
     });
   }
   };
+  const clickHandler=()=>{
+    setShowPass(!showPass)
+}
 
   if (!selector.loading) {
-    return <Navigate to='/dashboard' />;
+    return <Navigate to='/dashboard' />
   }
 
   return (
@@ -42,6 +46,8 @@ const Login = () => {
           name="password"
           onChange={onChange}
           value={input.password}
+          showPass={showPass}
+          clickHandler={clickHandler}
         />
         <div className="button">
           <button className="btn" onClick={onSubmit}>

@@ -8,19 +8,20 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const selector = useSelector((state) => state.post);
   useEffect(() => {
-   const id=localStorage.getItem("id")
-      
+    console.log("token--->");
+   const id = localStorage.getItem("id")
       dispatch(getProfile(JSON.parse(id)));
   }, [dispatch]);
 
   const logout =()=>{
-    localStorage.clear();localStorage.clear();
+    localStorage.clear();
   }
-  console.log("token--->", selector);
+  
 
   if(selector.loading){
     return <div>Loading.....</div>
   }
+
   return (
     <>
       <div className="sidebar">

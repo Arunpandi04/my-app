@@ -21,7 +21,9 @@ export  const createProfile = (formData)=> {
                 payload: res.data,
             })
         }else{
-          localStorage.setItem("token", JSON.stringify(""))
+          localStorage.setItem("token", JSON.stringify(res?.data.token))
+          localStorage.setItem("id", JSON.stringify(res?.data?.data._id))
+          localStorage.setItem("Auth",true)
           dispatch({
             type: ERROR,
             payload: res,
@@ -38,10 +40,10 @@ export const Loggedin = (formData)=> {
       //   data : formData
       // }).catch((e)=>console.log("reeoe"))
       const res = await axios.post('https://secure-shore-10480.herokuapp.com/signin',formData).catch((e)=>console.log("error"))
-      console.log("res?.data.loggedin --->",res?.data)
       if(res?.data){
         localStorage.setItem("token", JSON.stringify(res?.data.token))
         localStorage.setItem("id", JSON.stringify(res?.data?.data._id))
+        localStorage.setItem("Auth",true)
           dispatch({
               type: LOGIN,
               payload: res.data,

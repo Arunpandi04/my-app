@@ -5,16 +5,16 @@ import "./Dashboard.scss";
 import { Navbar, Nav, Offcanvas, Dropdown } from "react-bootstrap";
 
 const Dashboard = () => {
-  const dispatch = useDispatch();
-  const selector = useSelector((state) => state.post);
+  const dispatch = useDispatch()
+  const selector = useSelector((state) => state.post)
   useEffect(() => {
     console.log("token--->");
    const id = localStorage.getItem("id")
-      dispatch(getProfile(JSON.parse(id)));
+      dispatch(getProfile(JSON.parse(id)))
   }, [dispatch]);
 
   const logout =()=>{
-    localStorage.clear();
+    localStorage.clear()
   }
   
 

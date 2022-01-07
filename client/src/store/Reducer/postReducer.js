@@ -1,6 +1,8 @@
+import { POST,GET,LOGIN,ERROR ,GETALL,PUT} from "../Actions/types";
 
 const initialState = {
     posts: [],
+    post:{},
     loading: true,
     isAuthenticate:false
   };
@@ -8,15 +10,24 @@ const initialState = {
  const Reduces = (state = initialState, action) =>{
     const { type, payload } = action;
     switch (type) {
-      case 'POST':
-      case 'LOGIN':
-      case 'GET':
+      case POST:
+      case LOGIN:
+      case GET:
+      case PUT :
         return {
+          ...state,
+          post: {...payload},
+          loading: false,
+          isAuthenticate:true
+        };
+      case GETALL:
+        return {
+          ...state,
           posts: payload,
           loading: false,
           isAuthenticate:true
         };
-        case 'ERROR':
+        case ERROR:
           return {
             ...state,
             loading: true,

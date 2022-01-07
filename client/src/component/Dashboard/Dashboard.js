@@ -1,27 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile } from "../../store/Actions/postAction";
+import { getProfile ,getAllUser, updateUser} from "../../store/Actions/postAction";
 import "./Dashboard.scss";
-import { Navbar, Nav, Offcanvas, Dropdown } from "react-bootstrap";
+import { Navbar, Nav, Offcanvas, Dropdown ,Table,Button} from "react-bootstrap";
 
 const Dashboard = () => {
+  const[loader,setLoader]=useState(false)
   const dispatch = useDispatch()
   const selector = useSelector((state) => state.post)
   useEffect(() => {
-    console.log("token--->");
    const id = localStorage.getItem("id")
       dispatch(getProfile(JSON.parse(id)))
-  }, [dispatch]);
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getAllUser())
+   }, [selector.post]);
 
   const logout =()=>{
     localStorage.clear()
   }
-  
-
+  const edit =(data)=>{
+    data.verifed = !data.verifed
+    dispatch(updateUser(data._id,data))
+  }
+  const verify =(data)=>{
+    setLoader(prevSelected => {
+      return !prevSelected
+    })
+    data.verifed = !data.verifed
+    dispatch(updateUser(data._id,data))
+    setLoader(prevSelected => {
+      return !prevSelected})
+  }
   if(selector.loading){
     return <div>Loading.....</div>
   }
-
   return (
     <>
       <div className="sidebar">
@@ -61,9 +75,9 @@ const Dashboard = () => {
       </div>
       <div className="content">
         <div className="header">
-       { selector.posts.data && <Dropdown className="d-inline mx-3 drop-down">
+       <Dropdown className="d-inline mx-3 drop-down">
             <Dropdown.Toggle id="dropdown-autoclose-true">
-              {selector?.posts?.data?.firstName}
+              {selector?.post?.firstName}
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
@@ -71,8 +85,40 @@ const Dashboard = () => {
               <Dropdown.Item href="/link">Menu Item</Dropdown.Item>
               <Dropdown.Item href="/" onClick={logout}>Signout</Dropdown.Item>
             </Dropdown.Menu>
-          </Dropdown>}
+          </Dropdown>
         </div>
+        {loader ? <div> loading...</div> :
+       <Table responsive>
+        <thead>
+    <tr>
+      <th>Email</th>
+      <th>First_Name</th>
+      <th>Last_Name</th>
+      <th>Address</th>
+      <th>DOB</th>
+      <th>Gender</th>
+      <th>Admin</th>
+      <th>Verified</th> 
+      <th>Edit</th> 
+      <th>Verify</th>   
+    </tr>
+  </thead>
+  <tbody>
+   { selector.posts.map((post,index) => 
+   <tr key={index}>
+      <td>{post.email}</td>
+      <td>{post.firstName}</td>
+      <td>{post.lastName}</td>
+      <td>{post.address}</td>
+      <td>{post.dob}</td>
+      <td>{post.gender}</td>
+      <td>{post.Admin ? 'yes' : "No"}</td>
+      <td>{post.verifed ? 'yes' : "No"}</td>
+      <td><Button onClick={()=>edit(post)}>Edit</Button> </td>
+      <td><Button onClick={()=>verify(post)}>Verify</Button></td>
+    </tr>)}
+  </tbody>
+        </Table>}
       </div>
     </>
   );

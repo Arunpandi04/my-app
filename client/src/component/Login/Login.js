@@ -9,6 +9,7 @@ import  { Navigate } from 'react-router'
 const Login = () => {
   const [input, setInput] = useState({ email: "", password: "" })
   const[showPass,setShowPass]=useState(false)
+
   const onChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value })
   };

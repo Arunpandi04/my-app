@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProfile ,getAllUser, updateUser} from "../../store/Actions/postAction";
 import "./Dashboard.scss";
 import { Link } from "react-router-dom";
-import { Navbar, Nav, Offcanvas, Dropdown ,Table,Button} from "react-bootstrap";
+import { Navbar, Nav, Offcanvas, Dropdown ,Table,Button,Spinner} from "react-bootstrap";
 import { ToastContainer } from 'react-toastify';
 
 const Dashboard = () => {
@@ -36,7 +36,7 @@ const Dashboard = () => {
       return !prevSelected})
   }
   if(selector.loading){
-    return <div>Loading.....</div>
+    return <Spinner animation="border" role="status" />
   }
   return (
     <>
@@ -91,7 +91,7 @@ const Dashboard = () => {
           </Dropdown>
         </div>
         {loader ? <div> loading...</div> :
-       <Table responsive>
+       <Table responsive stripped bordered hover size="sm">
         <thead>
     <tr>
       <th>Email</th>

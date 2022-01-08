@@ -4,7 +4,8 @@ const initialState = {
     posts: [],
     post:{},
     loading: true,
-    isAuthenticate:false
+    isAuthenticate:false,
+    error:''
   };
   
  const Reduces = (state = initialState, action) =>{
@@ -31,7 +32,8 @@ const initialState = {
           return {
             ...state,
             loading: true,
-            isAuthenticate:false
+            isAuthenticate:false,
+            error:payload
           };
       default:
         return state;

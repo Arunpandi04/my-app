@@ -5,7 +5,6 @@ import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 function CustomInput(props) {
     const { type,name, onChange, value, clickHandler, showPass} = props
-   console.log("showPass",showPass);
     return (
          <div className="input">
             <label className=" text-font label-field" style={{ paddingRight: '10px' }}>{name}</label>

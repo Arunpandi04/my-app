@@ -9,7 +9,8 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 import { Profile } from "./component/Profile";
 import { Links } from "./component/Links";
-import { useSelector } from "react-redux";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const PrivateRoute = ({ children}) => {
   const Auth = localStorage.getItem("Auth")

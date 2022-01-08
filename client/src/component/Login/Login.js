@@ -4,38 +4,41 @@ import "../RegisterComponent/Register.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Loggedin } from "../../store/Actions/postAction";
 import { Link } from "react-router-dom";
-import  { Navigate } from 'react-router'
+import { Navigate } from 'react-router'
+import { ToastContainer } from 'react-toastify';
 
 const Login = () => {
   const [input, setInput] = useState({ email: "", password: "" })
-  const[showPass,setShowPass]=useState(false)
+  const [showPass, setShowPass] = useState(false)
 
   const onChange = (e) => {
+    e.preventDefault()
     setInput({ ...input, [e.target.name]: e.target.value })
   };
   const selector = useSelector((state) => state.post)
   const dispatch = useDispatch()
-  const onSubmit = () => {
+  const onSubmit = (e) => { 
+    e.preventDefault()
     dispatch(Loggedin(input))
-    if(!selector.loading){
-    setInput({
-      email: "",
-      password: "",
-    });
-  }
+    if (!selector.loading) {
+      setInput({
+        email: "",
+        password: "",
+      });
+   
+    }
   };
-  const clickHandler=()=>{
+  const clickHandler = () => {
     setShowPass(!showPass)
-}
-
+  }
   if (!selector.loading) {
     return <Navigate to='/dashboard' />
   }
-
+ 
   return (
     <div className="input-container">
       <div className="input-fields">
-        <h3 className="text-font" style={{textAlign:"center"}}> LOGIN page</h3>
+        <h3 className="text-font" style={{ textAlign: "center" }}> LOGIN page</h3>
         <CustomInput
           type="email"
           name="email"
@@ -51,10 +54,11 @@ const Login = () => {
           clickHandler={clickHandler}
         />
         <div className="button">
-          <button className="btn" onClick={onSubmit}>
+          <button className="btn" onClick={(e)=>onSubmit(e)}>
             submit
           </button>
         </div>
+        <ToastContainer />
         <h5 style={{ textAlign: "center" }}>
           Create an Account <Link to="/sigup">signup</Link>
         </h5>

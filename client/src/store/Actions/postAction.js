@@ -1,10 +1,11 @@
 import axios from '../custom-axios';
 import { POST,GET,LOGIN,ERROR ,GETALL,PUT} from "./types";
+import {  toast } from 'react-toastify';
 
 export  const createProfile = (formData)=> {
     return async(dispatch) => {
         const res = await axios.post('https://secure-shore-10480.herokuapp.com/signup',formData).catch((e)=>console.log("error"))
-        if(res?.data){          
+        if(res?.data?.data?.success){          
           localStorage.setItem("token", JSON.stringify(res?.data.token))
           localStorage.setItem("id", JSON.stringify(res?.data?.data._id))
           localStorage.setItem("Auth",true)
@@ -12,20 +13,22 @@ export  const createProfile = (formData)=> {
                 type: POST,
                 payload: res.data.data,
             })
+            toast.success("SignUp Successfully")
         }else{
           localStorage.setItem("Auth",false)
           dispatch({
             type: ERROR,
-            payload: res,
+            payload: res.data.message,
         })
+        toast.warning(res.data.message)
         }
      };
 };
 
 export const Loggedin = (formData)=> {
   return async(dispatch) => {
-      const res = await axios.post('https://secure-shore-10480.herokuapp.com/signin',formData).catch((e)=>console.log("error"))
-      if(res?.data){
+      const res = await axios.post('https://secure-shore-10480.herokuapp.com/signin',formData)
+      if(res?.data?.success){
         localStorage.setItem("token", JSON.stringify(res?.data.token))
         localStorage.setItem("id", JSON.stringify(res?.data?.data._id))
         localStorage.setItem("Auth",true)
@@ -33,13 +36,15 @@ export const Loggedin = (formData)=> {
               type: LOGIN,
               payload: res.data.data,
           })
+          toast.success("SignIN Successfully")
       }else{
         localStorage.setItem("token", JSON.stringify(""))
         localStorage.setItem("Auth",false)
         dispatch({
           type: ERROR,
-          payload: res,
+          payload: res.data.message,
       })
+      toast.error(res.data.message)
       }
    };
 };

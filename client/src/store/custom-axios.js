@@ -4,9 +4,10 @@ import axios from 'axios';
 const axiosInstance = axios.create();
 // request interceptor for adding token
 axiosInstance.interceptors.request.use((config) => {
-  console.log("akhsashakd")
   // add token to request headers
-  config.headers['authorization'] = "Bearer "+JSON.parse(localStorage.getItem('token'))
+  if(localStorage.getItem('token')!==undefined){
+    config.headers['authorization'] = "Bearer "+JSON.parse(localStorage.getItem('token'))
+  }
   config.headers['Content-Type']= 'application/json'
   return config;
 });

@@ -2,7 +2,9 @@ import React, { useEffect ,useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile ,getAllUser, updateUser} from "../../store/Actions/postAction";
 import "./Dashboard.scss";
+import { Link } from "react-router-dom";
 import { Navbar, Nav, Offcanvas, Dropdown ,Table,Button} from "react-bootstrap";
+import { ToastContainer } from 'react-toastify';
 
 const Dashboard = () => {
   const[loader,setLoader]=useState(false)
@@ -39,6 +41,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="sidebar">
+        <ToastContainer />
         <div className="d-sm-block d-md-none">
           <Navbar bg="light" expand={false}>
             <Navbar.Toggle aria-controls="offcanvasNavbar" />
@@ -63,13 +66,13 @@ const Dashboard = () => {
         >
           <h4> My App </h4>
           <Nav.Item>
-            <Nav.Link href="/dashboard">Active</Nav.Link>
+            <Link to="/dashboard">Active</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Link to="/profile">Profile</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/link">Link</Nav.Link>
+            <Link to="/link">Link</Link>
           </Nav.Item>
         </Nav>
       </div>

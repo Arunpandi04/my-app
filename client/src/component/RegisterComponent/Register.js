@@ -8,6 +8,7 @@ import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import Dashboard from "../Dashboard/Dashboard";
 import { Link } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 const Register = () => {
   const[showPass,setShowPass]=useState(false)
@@ -48,6 +49,7 @@ const Register = () => {
   }
   return (
     <div className="input-container">
+      <ToastContainer />
       <div className="input-fields">
       <h3 className="text-font" style={{textAlign:"center"}}> REGISTER page</h3>
         <CustomInput type="text" name="firstName" onChange={onChange} value={input.firstName} />

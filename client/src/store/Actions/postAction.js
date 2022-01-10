@@ -1,12 +1,17 @@
 import axios from '../custom-axios';
 import { POST,GET,LOGIN,ERROR ,GETALL,PUT} from "./types";
 import {  toast } from 'react-toastify';
+import moment from "moment";
 
 export  const createProfile = (formData)=> {
+  formData.verifed=false
+  formData.Admin=false
+  formData.dob=moment(formData.dob).format("DD/MM/YYYY")
     return async(dispatch) => {
         const res = await axios.post('https://secure-shore-10480.herokuapp.com/signup',formData).catch((e)=>console.log("error"))
         if(res?.data?.data?.success){          
           localStorage.setItem("token", JSON.stringify(res?.data.token))
+          localStorage.setItem("Name", JSON.stringify(res?.data?.data?.firstName))
           localStorage.setItem("id", JSON.stringify(res?.data?.data._id))
           localStorage.setItem("Auth",true)
             dispatch({
@@ -30,6 +35,7 @@ export const Loggedin = (formData)=> {
       const res = await axios.post('https://secure-shore-10480.herokuapp.com/signin',formData)
       if(res?.data?.success){
         localStorage.setItem("token", JSON.stringify(res?.data.token))
+        localStorage.setItem("Name", JSON.stringify(res?.data?.data.firstName))
         localStorage.setItem("id", JSON.stringify(res?.data?.data._id))
         localStorage.setItem("Auth",true)
           dispatch({
@@ -67,6 +73,7 @@ export const  getAllUser = () =>{
 }
 
 export const getProfile = (id)=> {
+  console.log("getProfile",id)
     return async(dispatch) => {
         const res = await axios.get(`https://secure-shore-10480.herokuapp.com/user/${id}`).catch((e)=>console.log("error"))      
       
@@ -86,6 +93,8 @@ export const getProfile = (id)=> {
 
 
 export const updateUser = (id,data)=> {
+  data.dob=moment(data.dob).format("DD/MM/YYYY")
+  console.log("data.dob",data.dob)
   return async(dispatch) => {
       const res = await axios.put(`https://secure-shore-10480.herokuapp.com/user/${id}`,data).catch((e)=>console.log("error"))
       if(res?.data){

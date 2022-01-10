@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CustomInput from "../customField/CustomInput";
-import "../RegisterComponent/Register.scss";
+import "../RegisterComponent/Form.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Loggedin } from "../../store/Actions/postAction";
 import { Link } from "react-router-dom";

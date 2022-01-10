@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch ,useSelector} from "react-redux";
 import CustomInput from "../customField/CustomInput";
-import "./Register.scss";
+import "./Form.scss";
 import { createProfile } from "../../store/Actions/postAction";
-import DatePicker from "react-datepicker";
-import moment from "moment";
-import "react-datepicker/dist/react-datepicker.css";
 import Dashboard from "../Dashboard/Dashboard";
 import { Link } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
+import DatePicker from 'react-date-picker';
 
 const Register = () => {
   const[showPass,setShowPass]=useState(false)
@@ -17,15 +15,16 @@ const Register = () => {
     lastName: "",
     email: "",
     address: "",
-    dob: "",
+    dob: new Date(),
     gender: "",
     password:""
   })
 
   const onChange = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
+    // const data =moment(e).format("DD/MM/YYYY")
+  setInput({ ...input, [e.target.name]: e.target.value });
   }
-
+console.log("hdJKBSHFM",new Date(input.dob))
   const clickHandler=()=>{
     setShowPass(!showPass)
 }
@@ -37,7 +36,7 @@ const Register = () => {
       lastName: "",
       email: "",
       address: "",
-      dob: "",
+      dob: new Date(),
       gender: "",
       password:""
     });
@@ -60,14 +59,14 @@ const Register = () => {
           clickHandler={clickHandler} />
         <div className="datepicker">
           <span className="text-font label">dob</span>
-          <DatePicker
+           <DatePicker
+           className='dates'
             name="dob"
-            value={input.dob}
-            placeholderText="DOB"
-            onChange={(date) =>
-              setInput({ ...input, dob: moment(date).format("DD/MM/YYYY") })
-            }
-          />
+         onChange={(date) =>
+          setInput({ ...input, dob: date })
+        }
+        value={input.dob}
+      />
         </div>
         <div className="select-div">
           <span className="text-font label">gender</span>

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import CustomInput from "../customField/CustomInput";
-import "../RegisterComponent/Form.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Loggedin } from "../../store/Actions/postAction";
 import { Link } from "react-router-dom";
 import { Navigate } from 'react-router'
 import { ToastContainer } from 'react-toastify';
+import "../Form/Form.scss";
 
 const Login = () => {
   const [input, setInput] = useState({ email: "", password: "" })

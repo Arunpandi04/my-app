@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route,Navigate } from "react-router-do
 import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import { Profile } from "./component/Profile";
+import { Profile } from "./component/Profile/Profile";
 import { Links } from "./component/Links";
 import 'react-toastify/dist/ReactToastify.css';
 

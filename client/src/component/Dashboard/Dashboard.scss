@@ -24,7 +24,7 @@
 }
 
 .content{
-    height: 150vh;  /** just to make it scrollable. can be removed */
+  /** just to make it scrollable. can be removed */
   min-height: 100vh;
   position: relative;
   width: 100%;
@@ -112,4 +112,9 @@ h4{
     background-color: rgb(132, 121, 224) !important;
     border-color: rgb(132, 121, 224) !important;
     color: white !important;
+}
+
+.title{
+    font-size: 14px !important;
+        font-weight: 400;
 }

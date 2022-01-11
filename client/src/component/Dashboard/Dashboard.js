@@ -4,10 +4,9 @@ import {getAllUser, updateUser} from "../../store/Actions/postAction";
 import "./Dashboard.scss";
 import { Link } from "react-router-dom";
 import { Navbar, Nav, Offcanvas, Dropdown ,Table,Button,Spinner} from "react-bootstrap";
-import DatePicker from 'react-date-picker';
-import CustomInput from "../customField/CustomInput";
-import "../RegisterComponent/Form.scss";
 import moment from "moment";
+import Form from '../Form/Form'
+import "../Form/Form.scss";
 
 const Dashboard = () => {
   const [show, setShow] = useState(false);
@@ -28,7 +27,6 @@ const[userId,setUserId]=useState("")
   useEffect(() => {
    const Name = localStorage.getItem("Name")
    const id = localStorage.getItem("id")
-      // setUser(JSON.parse(Name))
       setUser(JSON.parse(Name))
       setUserId(JSON.parse(id))
   }, [])
@@ -83,7 +81,11 @@ const onSubmit =(id,data)=>{
   const onChange = (e) => {
     e.preventDefault()
     setInput({ ...input, [e.target.name]: e.target.value })
-  };
+  }
+
+  const onChangeDate =(date)=>{
+          setInput({ ...input, dob: date })
+  }
   return (
     <>
       <div className="sidebar">
@@ -97,7 +99,7 @@ const onSubmit =(id,data)=>{
             >
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                <h4>My App</h4>
+                <h4 className="title">MyApp</h4>
                   <Nav.Link href="/profile">Home</Nav.Link>
                   <Nav.Link href="/link">Link</Nav.Link>
                 </Nav>
@@ -109,7 +111,7 @@ const onSubmit =(id,data)=>{
           className="col-sm-2 d-none d-md-block  sidebar navs"
           activeKey="/dashboard"
         >
-          <h4> My App </h4>
+          <h4> MyApp </h4>
           <Nav.Item>
             <Link to="/dashboard">Active</Link>
           </Nav.Item>
@@ -161,8 +163,8 @@ const onSubmit =(id,data)=>{
       <td>{post.dob}</td>
       <td>{post.gender}</td>
       <td>{post.Admin ? 'yes' : "No"}</td>
-      <td><Button onClick={()=>edit(post)}>Edit</Button> </td>
-      <td><Button onClick={()=>verify(post)}>{post.verifed ? 'Verified' : 'Verify'}</Button></td>
+      <td><Button onClick={()=> edit(post)}>Edit</Button> </td>
+      <td><Button onClick={()=> verify(post)}>{post.verifed ? 'Verified' : 'Verify'}</Button></td>
     </tr>})}
   </tbody>
         </Table>
@@ -171,35 +173,8 @@ const onSubmit =(id,data)=>{
           <Offcanvas.Title>Edit Details</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-        <CustomInput type="text" name="firstName" onChange={onChange} value={input.firstName} />
-        <CustomInput type="text" name="lastName" onChange={onChange} value={input.lastName} />
-        <CustomInput type="email" name="email" onChange={onChange} value={input.email} />
-        <CustomInput name="address" onChange={onChange} value={input.address} />
-        <div className="select-div">
-          <span className="text-font label">gender</span>
-          <select
-            className="select"
-            name="gender"
-            value={input.gender}
-            onChange={onChange}
-          >
-            <option default="">Select Gender</option>
-            <option value="Male">male</option>
-            <option value="Female">female</option>
-          </select>
-        </div>
-        <div className="datepicker">
-          <span className="text-font label">dob</span>
-          <DatePicker
-          className='dates'
-            name="dob"
-         onChange={(date) =>{console.log("data",date)
-          setInput({ ...input, dob: date })}
-        }
-         value={moment(input.dob, moment.defaultFormat).toDate()}
-      />
-        </div>
-        <div className="edit-button">
+        <Form onChange={onChange} input={input} onChangeDate={onChangeDate} ispwd={false}/>
+        <div className="edit-button"> 
           <button className="btn" onClick={()=>onSubmit(id,input)}>
             submit
           </button>

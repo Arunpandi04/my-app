@@ -37,17 +37,20 @@ const Login = () => {
  
   return (
     <div className="input-container">
+      
       <div className="input-fields">
-        <h3 className="text-font" style={{ textAlign: "center" }}> LOGIN page</h3>
+        <h3 className="text-font" style={{ textAlign: "center" }}> SIGNIN </h3>
         <CustomInput
           type="email"
           name="email"
+          label="email"
           onChange={onChange}
           value={input.email}
         />
         <CustomInput
           type="password"
           name="password"
+          label="password*"
           onChange={onChange}
           value={input.password}
           showPass={showPass}
@@ -58,7 +61,6 @@ const Login = () => {
             submit
           </button>
         </div>
-        <ToastContainer />
         <h5 style={{ textAlign: "center" }}>
           Create an Account <Link to="/sigup">signup</Link>
         </h5>

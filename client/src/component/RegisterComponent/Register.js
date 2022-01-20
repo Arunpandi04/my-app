@@ -52,7 +52,7 @@ const Register = () => {
     <div className="input-container">
       <ToastContainer />
       <div className="input-fields">
-      <h3 className="text-font" style={{textAlign:"center"}}> REGISTER page</h3>
+      <h3 className="text-font" style={{textAlign:"center"}}> SIGNUP </h3>
          <Form onChange={onChange} input={input} onChangeDate={onChangeDate} ispwd={true} clickHandler={clickHandler}showPass={showPass}/>
         <div className="button">
           <button className="btn" onClick={onSubmit}>

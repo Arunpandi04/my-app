@@ -113,7 +113,7 @@ export const updateUser = (id,data)=> {
 
 export const socialSignin = (formData)=> {
   return async(dispatch) => {
-      const res = await axios.post('http://localhost:5000/social/signin',formData)
+      const res = await axios.post('https://secure-shore-10480.herokuapp.com/social/signin',formData)
       if(res?.data?.success){
         localStorage.setItem("token", JSON.stringify(res?.data.token))
         localStorage.setItem("Name", JSON.stringify(res?.data?.data.firstName))

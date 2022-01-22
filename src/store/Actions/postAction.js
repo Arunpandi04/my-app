@@ -119,19 +119,20 @@ export const socialSignin = (formData)=> {
         localStorage.setItem("Name", JSON.stringify(res?.data?.data.firstName))
         localStorage.setItem("id", JSON.stringify(res?.data?.data._id))
         localStorage.setItem("Auth",true)
+        toast.success(res.data.message)
           dispatch({
               type: LOGIN,
               payload: res.data.data,
           })
-          toast.success("SignIN Successfully")
+          
       }else{
         localStorage.setItem("token", JSON.stringify(""))
         localStorage.setItem("Auth",false)
+      toast.error(res.data.message)
         dispatch({
           type: ERROR,
           payload: res.data.message,
       })
-      toast.error(res.data.message)
       }
    };
 };

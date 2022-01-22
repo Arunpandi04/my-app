@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux"
 import { createProfile } from "../../store/Actions/postAction"
 import Dashboard from "../Dashboard/Dashboard"
 import { Link } from "react-router-dom"
-import { ToastContainer } from 'react-toastify'
 import Form from '../Form/Form'
 import "../Form/Form.scss"
 
@@ -52,7 +51,6 @@ const Register = () => {
 
   return (
     <div className="input-container">
-      <ToastContainer />
       <div className="input-fields">
         <h3 className="text-font" style={{ textAlign: "center" }}> SIGNUP </h3>
         <Form onChange={onChange} input={input} onChangeDate={onChangeDate} ispwd={true} clickHandler={clickHandler} showPass={showPass} />

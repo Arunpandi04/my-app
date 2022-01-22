@@ -7,18 +7,18 @@ const Form = (props) => {
   const { input, onChange, onChangeDate, clickHandler, showPass, ispwd } = props
   return (
     <>
-      <CustomInput type="text" label="firstName" name="firstName" onChange={onChange} value={input.firstName} />
-      <CustomInput type="text" label="lastName" name="lastName" onChange={onChange} value={input.lastName} />
-      <CustomInput type="email" label="email" name="email" onChange={onChange} value={input.email} />
-      <CustomInput name="address" label="address" onChange={onChange} value={input.address} />
-      {ispwd && <CustomInput label="password" type="password" name="password" onChange={onChange} value={input.password} showPass={showPass}
+      <CustomInput type="text" label="firstName" name="firstName" onChange={onChange} value={input?.firstName} />
+      <CustomInput type="text" label="lastName" name="lastName" onChange={onChange} value={input?.lastName} />
+      <CustomInput type="email" label="email" name="email" onChange={onChange} value={input?.email} />
+      <CustomInput name="address" label="address" onChange={onChange} value={input?.address} />
+      {ispwd && <CustomInput label="password" type="password" name="password" onChange={onChange} value={input?.password} showPass={showPass}
         clickHandler={clickHandler} />}
       <div className="select-div">
         <span className="text-font label">gender</span>
         <select
           className="select"
           name="gender"
-          value={input.gender}
+          value={input?.gender}
           onChange={onChange}
         >
           <option default="">Select Gender</option>
@@ -32,7 +32,7 @@ const Form = (props) => {
           className='dates'
           name="dob"
           onChange={onChangeDate}
-          value={moment(input.dob, moment.defaultFormat).toDate()}
+          value={input?.dob ? moment(input?.dob, moment.defaultFormat).toDate(): moment(new Date(), moment.defaultFormat).toDate()}
         />
       </div>
     </>

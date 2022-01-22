@@ -9,6 +9,7 @@ import { Provider } from "react-redux"
 import store from "./store/store"
 import { Profile } from "./component/Profile/Profile"
 import { Links } from "./component/Link/Link"
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 
@@ -20,6 +21,7 @@ const PrivateRoute = ({ children}) => {
 function App() {
   return (
     <Provider store={store}>
+      <ToastContainer />
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />

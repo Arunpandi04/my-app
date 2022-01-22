@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import DatePicker from 'react-date-picker';
-import CustomInput from "../customField/CustomInput";
+import React from "react"
+import DatePicker from 'react-date-picker'
+import CustomInput from "../customField/CustomInput"
 import moment from "moment";
 
 const Form = (props) => {

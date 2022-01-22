@@ -52,24 +52,7 @@ h4{
     text-align:center;
     height: 10vh;
 }
- @media screen and (max-width: 1200px) {
-    .navs a {
-        border-bottom: 0.1px solid #6a92ee;
-        border-top: 0.1px solid #557ddb;
-        color: #ffffff;
-        display: block;
-        font-size: 15px !important;
-        font-weight: 400;
-        padding: 20px 14px;
-        text-decoration: none;
-    }
-    
-    .text-color{
-        color: white !important;
-        font-size: 14px !important;
-        font-weight: 400;
-    }
-}
+ 
 
 .navs a:hover {
     background: #4668b8 none repeat scroll 0 0;
@@ -96,11 +79,31 @@ h4{
     margin-top:0px;
     top: 0;
     width: 100%;
-    height: 11.7vh;
-    background-color:burlywood !important;
+    height: 13.7vh;
+    background-color: #6289e6 !important;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .navs a {
+        border-bottom: 0.1px solid #6a92ee;
+        border-top: 0.1px solid #557ddb;
+        color: #ffffff;
+        display: block;
+        font-size: 15px !important;
+        font-weight: 400;
+        padding: 20px 14px;
+        text-decoration: none;
+    }
+    
+    .text-color{
+        color: white !important;
+        font-size: 14px !important;
+        font-weight: 400;
+    }
 }
 
 .drop-down > button{
@@ -117,4 +120,9 @@ h4{
 .title{
     font-size: 14px !important;
         font-weight: 400;
+}
+
+.btn:focus {
+    /* outline: 0; */
+     box-shadow: 0 0 0 0 ; 
 }

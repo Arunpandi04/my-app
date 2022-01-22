@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux"
 import { getProfile } from "../../store/Actions/postAction";
-import { Navbar, Nav, Offcanvas, Dropdown, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Navbar, Nav, Offcanvas, Dropdown, Card, ListGroup, ListGroupItem } from "react-bootstrap"
 import './Profile.scss'
-import '../Dashboard/Dashboard.scss';
-import { Link } from "react-router-dom";
+import '../Dashboard/Dashboard.scss'
+import { Link } from "react-router-dom"
 import img from '../../profile.jpg'
+
 export const Profile = () => {
   const [user, setUser] = useState("")
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const selector = useSelector((state) => state.post)
 
   useEffect(() => {
@@ -39,6 +40,7 @@ export const Profile = () => {
               <Offcanvas.Body>
                 <Nav className="justify-content-end flex-grow-1 pe-3">
                   <h4 className="title">MyApp</h4>
+                  <Nav.Link href="/dashboard">Dashboard</Nav.Link>
                   <Nav.Link href="/profile">Profile</Nav.Link>
                   <Nav.Link href="/link">Link</Nav.Link>
                 </Nav>
@@ -52,7 +54,7 @@ export const Profile = () => {
         >
           <h4> MyApp </h4>
           <Nav.Item>
-            <Link to="/dashboard">Active</Link>
+            <Link to="/dashboard">Dashboard</Link>
           </Nav.Item>
           <Nav.Item>
             <Link to="/profile">Profile</Link>
@@ -70,7 +72,7 @@ export const Profile = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-              <Dropdown.Item href="/link">Menu Item</Dropdown.Item>
+              <Dropdown.Item href="/link">Link</Dropdown.Item>
               <Dropdown.Item href="/" onClick={logout}>Signout</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
@@ -83,7 +85,7 @@ export const Profile = () => {
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroupItem>{selector.post.email}</ListGroupItem>
-            <ListGroupItem>{selector.post.dob}</ListGroupItem>
+            <ListGroupItem>{selector.post.dob }</ListGroupItem>
             <ListGroupItem>{selector.post.gender}</ListGroupItem>
             <ListGroupItem>{selector.post.address}</ListGroupItem>
           </ListGroup>

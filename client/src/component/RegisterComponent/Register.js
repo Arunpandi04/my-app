@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch ,useSelector} from "react-redux";
-import { createProfile } from "../../store/Actions/postAction";
-import Dashboard from "../Dashboard/Dashboard";
-import { Link } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
+import React, { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { createProfile } from "../../store/Actions/postAction"
+import Dashboard from "../Dashboard/Dashboard"
+import { Link } from "react-router-dom"
+import { ToastContainer } from 'react-toastify'
 import Form from '../Form/Form'
-import "../Form/Form.scss";
+import "../Form/Form.scss"
 
 const Register = () => {
-  const[showPass,setShowPass]=useState(false)
+  const [showPass, setShowPass] = useState(false)
   const [input, setInput] = useState({
     firstName: "",
     lastName: "",
@@ -16,16 +16,17 @@ const Register = () => {
     address: "",
     dob: new Date(),
     gender: "",
-    password:""
+    password: ""
   })
 
   const onChange = (e) => {
-    // const data =moment(e).format("DD/MM/YYYY")
-  setInput({ ...input, [e.target.name]: e.target.value });
+    setInput({ ...input, [e.target.name]: e.target.value });
   }
-  const clickHandler=()=>{
+
+  const clickHandler = () => {
     setShowPass(!showPass)
-}
+  }
+
   const dispatch = useDispatch();
   const onSubmit = () => {
     dispatch(createProfile(input));
@@ -36,24 +37,25 @@ const Register = () => {
       address: "",
       dob: new Date(),
       gender: "",
-      password:""
-    });
-  };
-  
-  const selector = useSelector(state => state.post)
-  if(!selector.loading){
-      return <Dashboard />
+      password: ""
+    })
   }
 
-  const onChangeDate =(date)=>{
+  const selector = useSelector(state => state.post)
+  if (!selector.loading) {
+    return <Dashboard />
+  }
+
+  const onChangeDate = (date) => {
     setInput({ ...input, dob: date })
-}
+  }
+
   return (
     <div className="input-container">
       <ToastContainer />
       <div className="input-fields">
-      <h3 className="text-font" style={{textAlign:"center"}}> SIGNUP </h3>
-         <Form onChange={onChange} input={input} onChangeDate={onChangeDate} ispwd={true} clickHandler={clickHandler}showPass={showPass}/>
+        <h3 className="text-font" style={{ textAlign: "center" }}> SIGNUP </h3>
+        <Form onChange={onChange} input={input} onChangeDate={onChangeDate} ispwd={true} clickHandler={clickHandler} showPass={showPass} />
         <div className="button">
           <button className="btn" onClick={onSubmit}>
             submit
@@ -64,7 +66,7 @@ const Register = () => {
         </h5>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

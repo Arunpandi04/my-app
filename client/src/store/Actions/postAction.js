@@ -1,7 +1,7 @@
-import axios from '../custom-axios';
-import { POST,GET,LOGIN,ERROR ,GETALL,PUT} from "./types";
-import {  toast } from 'react-toastify';
-import moment from "moment";
+import axios from '../custom-axios'
+import { POST,GET,LOGIN,ERROR ,GETALL,PUT} from "./types"
+import {  toast } from 'react-toastify'
+import moment from "moment"
 
 export  const createProfile = (formData)=> {
   formData.verifed=false
@@ -110,3 +110,28 @@ export const updateUser = (id,data)=> {
       }
    }
 }
+
+export const socialSignin = (formData)=> {
+  return async(dispatch) => {
+      const res = await axios.post('http://localhost:5000/social/signin',formData)
+      if(res?.data?.success){
+        localStorage.setItem("token", JSON.stringify(res?.data.token))
+        localStorage.setItem("Name", JSON.stringify(res?.data?.data.firstName))
+        localStorage.setItem("id", JSON.stringify(res?.data?.data._id))
+        localStorage.setItem("Auth",true)
+          dispatch({
+              type: LOGIN,
+              payload: res.data.data,
+          })
+          toast.success("SignIN Successfully")
+      }else{
+        localStorage.setItem("token", JSON.stringify(""))
+        localStorage.setItem("Auth",false)
+        dispatch({
+          type: ERROR,
+          payload: res.data.message,
+      })
+      toast.error(res.data.message)
+      }
+   };
+};

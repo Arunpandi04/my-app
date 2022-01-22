@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from 'axios'
 
 // axios instance for making requests 
-const axiosInstance = axios.create();
+const axiosInstance = axios.create()
 // request interceptor for adding token
 axiosInstance.interceptors.request.use((config) => {
   // add token to request headers
@@ -9,7 +9,7 @@ axiosInstance.interceptors.request.use((config) => {
     config.headers['authorization'] = "Bearer "+JSON.parse(localStorage.getItem('token'))
   }
   config.headers['Content-Type']= 'application/json'
-  return config;
+  return config
 });
 
-export default axiosInstance;
+export default axiosInstance

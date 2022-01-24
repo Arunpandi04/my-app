@@ -1,33 +1,44 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux"
+import React, { useEffect,useState } from 'react'
+import { useDispatch } from "react-redux"
 import { getProfile } from "../../store/Actions/postAction"
 import { Navbar, Nav, Offcanvas, Dropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import './Link.scss'
 
 export const Links = () => {
+    const [user, setUser] = useState("")
 
     const dispatch = useDispatch()
-    const selector = useSelector((state) => state.post)
 
     useEffect(() => {
         const id = localStorage.getItem("id")
+        
         dispatch(getProfile(JSON.parse(id)))
     }, [dispatch])
 
+    useEffect(() => {
+        const Name = localStorage.getItem("Name")
+        setUser(JSON.parse(Name))
+      }, [])
+
+    const logout = () => {
+        localStorage.clear()
+        sessionStorage.clear()
+    }
+
     return (
         < >
-            <Navbar fixed="top" className="main" style={{ backgroundColor: "#6289e6", height: "13vh" }}>
-                <Navbar.Brand className="col-sm-2" href="#home"><h3 className="text" style={{ textAlign: "center" }}>React-Bootstrap</h3></Navbar.Brand>
+            <Navbar fixed="top" className="main" style={{ backgroundColor: "#6289e6", height: "13vh", display: "flex", justifyContent: "space-between" }}>
+                <Navbar.Brand className="col-sm-2" href="#home"><h3 className="text" style={{ textAlign: "center" }}>my Auth App</h3></Navbar.Brand>
                 <Dropdown className="d-inline mx-3 drop-down">
                     <Dropdown.Toggle id="dropdown-autoclose-true">
-                        {selector.post?.firstName}
+                        {user}
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu align="start">
-                        <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-                        <Dropdown.Item href="/link">Menu Item</Dropdown.Item>
-                        <Dropdown.Item href="/">Signout</Dropdown.Item>
+                    <Dropdown.Menu>
+                        <Dropdown.Item><Link to="/profile">Profile</Link></Dropdown.Item>
+                        <Dropdown.Item><Link to="/link">Link</Link></Dropdown.Item>
+                        <Dropdown.Item ><Link to="/" onClick={logout}>Signout</Link></Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Navbar>
@@ -43,9 +54,10 @@ export const Links = () => {
                         >
                             <Offcanvas.Body>
                                 <Nav className="justify-content-end flex-grow-1 pe-3">
-                                    <h4 className="title">MyApp</h4>
-                                    <Nav.Link href="/profile">Home</Nav.Link>
-                                    <Nav.Link href="/link">Link</Nav.Link>
+                                    <h4 className="title">my Auth App</h4>
+                                    <Nav.Item><Link to="/dashboard"><h5 className="title">Dashboard</h5></Link></Nav.Item>
+                                    <Nav.Item><Link to="/profile"><h5 className="title">Profile</h5></Link></Nav.Item>
+                                    <Nav.Item><Link to="/link"><h5 className="title">Link</h5></Link></Nav.Item>
                                 </Nav>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
@@ -57,7 +69,7 @@ export const Links = () => {
                 >
                     <Nav.Item>
                         <Nav.Item>
-                            <Link to="/dashboard"></Link>
+                            <Link to="/dashboard">Dashboard</Link>
                         </Nav.Item>
                     </Nav.Item>
                     <Nav.Item>

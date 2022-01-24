@@ -28,7 +28,8 @@
   min-height: 100vh;
   position: relative;
   width: 100%;
-  padding-left: calc(16.2% + 3px) ;
+  padding-left: calc(20.2% + 3px);
+  padding-top: 100px;
   //padding: 6px 6px 6px calc(17% + 6px)
 }
 
@@ -119,9 +120,17 @@ h4{
 
 .title{
     font-size: 14px !important;
-        font-weight: 400;
+    font-weight: 400;
 }
 
+
+
+@media screen and (max-width: 481px) {
+    .title{
+        font-size: 11px !important;
+        font-weight: 400;
+    }   
+}
 .btn:focus {
     /* outline: 0; */
      box-shadow: 0 0 0 0 ; 

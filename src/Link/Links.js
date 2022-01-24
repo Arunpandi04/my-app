@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getProfile } from "../../store/Actions/postAction"
-import { Navbar, Container, Form, NavDropdown, Nav, Offcanvas, Dropdown } from "react-bootstrap"
+import { Navbar, Nav, Offcanvas, Dropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import './Link.scss'
 
@@ -19,7 +19,7 @@ export const Links = () => {
         <div >
             <div className="d-none d-md-block">
                 <Navbar fixed="top" className="main" style={{ backgroundColor: "#6289e6", height: "15vh" }}>
-                    <Navbar.Brand className="col-sm-2" href="#home"><h3 className="text" style={{ textAlign: "center" }}>React-Bootstrap</h3></Navbar.Brand>
+                    <Navbar.Brand className="col-sm-2" href="#home"><h3 className="text" style={{ textAlign: "center" }}>My Auth app</h3></Navbar.Brand>
                     <Dropdown className="d-inline mx-3 drop-down">
                         <Dropdown.Toggle id="dropdown-autoclose-true">
                             Arunpandi
@@ -43,9 +43,10 @@ export const Links = () => {
                     >
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <h4 className="title">MyApp</h4>
-                                <Nav.Link href="/profile">Home</Nav.Link>
-                                <Nav.Link href="/link">Link</Nav.Link>
+                                <h4 className="title">My Auth app</h4>
+                                <Nav.Link><Link to="/dashboard">Dashboard</Link></Nav.Link>
+                                <Nav.Link><Link to="/profile">Profile</Link></Nav.Link>
+                                <Nav.Link><Link to="/link">Link</Link></Nav.Link>
                             </Nav>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
@@ -56,9 +57,9 @@ export const Links = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item href="/profile">Profile</Dropdown.Item>
-                        <Dropdown.Item href="/link">Menu Item</Dropdown.Item>
-                        <Dropdown.Item href="/">Signout</Dropdown.Item>
+                        <Dropdown.Item><Link to="/profile">Profile</Link></Dropdown.Item>
+                        <Dropdown.Item><Link to="/link">Link</Link></Dropdown.Item>
+                        <Dropdown.Item><Link to="/" >Signout</Link></Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </div>
@@ -72,7 +73,7 @@ export const Links = () => {
                     activeKey="/dashboard"
                 >
                     <Nav.Item>
-                        <Link to="/dashboard">Active</Link>
+                        <Link to="/dashboard">Dashboard</Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Link to="/profile">Profile</Link>

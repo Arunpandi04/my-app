@@ -1,34 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { getProfile } from "../../store/Actions/postAction";
-import { Navbar, Nav, Offcanvas, Dropdown, Card, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
 import './Profile.scss'
 import '../Dashboard/Dashboard.scss'
-import { Link } from "react-router-dom"
 import img from '../../profile.jpg'
+import {Links} from '../Link/Link'
+
 
 export const Profile = () => {
-  const [user, setUser] = useState("")
   const dispatch = useDispatch()
   const selector = useSelector((state) => state.post)
-
-  useEffect(() => {
-    const Name = localStorage.getItem("Name")
-    setUser(JSON.parse(Name))
-  }, [])
 
   useEffect(() => {
     const id = localStorage.getItem("id")
     dispatch(getProfile(JSON.parse(id)));
   }, [dispatch])
 
-  const logout = () => {
-    localStorage.clear()
-  }
-
+ 
   return (
     <>
-      <div className="sidebar">
+      {/* <div className="sidebar">
         <div className="d-sm-block d-md-none">
           <Navbar bg="light" expand={false}>
             <Navbar.Toggle aria-controls="offcanvasNavbar" />
@@ -76,8 +68,10 @@ export const Profile = () => {
               <Dropdown.Item href="/" onClick={logout}>Signout</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-        </div>
-        {!selector.loading && <div className="contents "><Card style={{ width: '20rem' }}>
+        </div> */}
+        <Links />
+        <div className="contents img ">
+        {!selector.loading &&<Card style={{ width: '20rem' }}>
           <Card.Img width={180}
             height={180} variant="top" src={img} alt="Card image" />
           <Card.Body>
@@ -85,13 +79,11 @@ export const Profile = () => {
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroupItem>{selector.post.email}</ListGroupItem>
-            <ListGroupItem>{selector.post.dob }</ListGroupItem>
-            <ListGroupItem>{selector.post.gender}</ListGroupItem>
-            <ListGroupItem>{selector.post.address}</ListGroupItem>
           </ListGroup>
-        </Card></div>}
+        </Card>}
+        </div>
 
-      </div>
+      {/* </div> */}
     </>
   )
 }

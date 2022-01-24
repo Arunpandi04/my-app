@@ -1,9 +1,12 @@
-
 .contents{
-display:flex;
-justify-content:center;
-align-items:center
-}
+    /** just to make it scrollable. can be removed */
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+    padding-left: calc(20.2% + 3px);
+    padding-top: 100px;
+    //padding: 6px 6px 6px calc(17% + 6px)
+  }
 
 .img{
     background-image: url("../../CM-Apps-APK.png");

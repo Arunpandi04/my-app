@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from 'react'
 import { useDispatch } from "react-redux"
 import { getProfile } from "../../store/Actions/postAction"
-import { Navbar, Nav, Offcanvas, Dropdown } from "react-bootstrap"
+import { Navbar, Nav, Offcanvas, Dropdown} from "react-bootstrap"
 import { Link } from "react-router-dom"
 import './Link.scss'
 
@@ -12,7 +12,6 @@ export const Links = () => {
 
     useEffect(() => {
         const id = localStorage.getItem("id")
-        
         dispatch(getProfile(JSON.parse(id)))
     }, [dispatch])
 
@@ -36,9 +35,9 @@ export const Links = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <Dropdown.Item><Link to="/profile">Profile</Link></Dropdown.Item>
-                        <Dropdown.Item><Link to="/link">Link</Link></Dropdown.Item>
-                        <Dropdown.Item ><Link to="/" onClick={logout}>Signout</Link></Dropdown.Item>
+                        <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
+                        <Dropdown.Item as={Link} to="/link">Link</Dropdown.Item>
+                        <Dropdown.Item as={Link} to="/" onClick={logout}>Signout</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Navbar>
@@ -52,12 +51,12 @@ export const Links = () => {
                             aria-labelledby="offcanvasNavbarLabel"
                             placement="start"
                         >
-                            <Offcanvas.Body>
-                                <Nav className="justify-content-end flex-grow-1 pe-3">
+                            <Offcanvas.Body style={{backgroundColor: "steelblue"}}>
+                                <Nav className="justify-content-end flex-grow-1 pe-3 navs">
                                     <h4 className="title">my Auth App</h4>
-                                    <Nav.Item><Link to="/dashboard"><h5 className="title">Dashboard</h5></Link></Nav.Item>
-                                    <Nav.Item><Link to="/profile"><h5 className="title">Profile</h5></Link></Nav.Item>
-                                    <Nav.Item><Link to="/link"><h5 className="title">Link</h5></Link></Nav.Item>
+                                    <Nav.Item><Link to="/dashboard" className="title">Dashboard</Link></Nav.Item>
+                                    <Nav.Item><Link to="/profile" className="title">Profile</Link></Nav.Item>
+                                    <Nav.Item><Link to="/link" className="title">Link</Link></Nav.Item>
                                 </Nav>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
@@ -68,9 +67,7 @@ export const Links = () => {
                     activeKey="/dashboard"
                 >
                     <Nav.Item>
-                        <Nav.Item>
                             <Link to="/dashboard">Dashboard</Link>
-                        </Nav.Item>
                     </Nav.Item>
                     <Nav.Item>
                         <Link to="/dashboard">Active</Link>

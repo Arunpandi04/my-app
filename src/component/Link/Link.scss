@@ -38,10 +38,15 @@
         border-top: 0.1px solid #557ddb;
         color: #ffffff;
         display: block;
-        font-size: 15px !important;
+        font-size: 8px !important;
         font-weight: 400;
         padding: 20px 14px;
         text-decoration: none;
+    }
+    h4{
+        color: white !important;
+        text-align:center;
+        height: 8vh;
     }
 }
 
@@ -73,3 +78,5 @@
 .navbar-toggler:focus {
     box-shadow: 0 0 0 0;
 }
+
+

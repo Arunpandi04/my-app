@@ -107,8 +107,7 @@ const Dashboard = () => {
             </thead>
             <tbody>
               {selector.posts.map((post, index) => {
-                if (post._id !== userId)
-                  return (<tr key={index}>
+                  return (post._id !== userId && <tr key={index}>
                     <td>{post.email}</td>
                     <td>{post.firstName}</td>
                     <td>{post.lastName}</td>

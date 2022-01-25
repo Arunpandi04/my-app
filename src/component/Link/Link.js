@@ -5,6 +5,7 @@ import { Navbar, Nav, Offcanvas, Dropdown} from "react-bootstrap"
 import { Link } from "react-router-dom"
 import './Link.scss'
 
+
 export const Links = () => {
     const [user, setUser] = useState("")
 
@@ -20,7 +21,7 @@ export const Links = () => {
         setUser(JSON.parse(Name))
       }, [])
 
-    const logout = () => {
+    const logout = (e) => {
         localStorage.clear()
         sessionStorage.clear()
     }
@@ -37,7 +38,7 @@ export const Links = () => {
                     <Dropdown.Menu>
                         <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
                         <Dropdown.Item as={Link} to="/link">Link</Dropdown.Item>
-                        <Dropdown.Item as={Link} to="/" onClick={logout}>Signout</Dropdown.Item>
+                        <Dropdown.Item  href="/" onClick={(e)=>logout(e)}>Signout</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Navbar>

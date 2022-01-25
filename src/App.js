@@ -15,7 +15,8 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const PrivateRoute = ({ children}) => {
   const Auth = localStorage.getItem("Auth")
-  return JSON.parse(Auth) ? children : <Navigate to="/" />
+  const isAuth = !!JSON.parse(Auth) ? true : false
+  return isAuth ? children : <Navigate to="/" />
 }
 
 function App() {

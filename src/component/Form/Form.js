@@ -1,7 +1,7 @@
 import React from "react"
 import DatePicker from 'react-date-picker'
 import CustomInput from "../customField/CustomInput"
-import moment from "moment";
+import moment from "moment"
 
 const Form = (props) => {
   const { input, onChange, onChangeDate, clickHandler, showPass, ispwd } = props
@@ -40,4 +40,4 @@ const Form = (props) => {
   )
 }
 
-export default Form;
+export default Form

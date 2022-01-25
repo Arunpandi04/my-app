@@ -14,7 +14,7 @@ export const Profile = () => {
 
   useEffect(() => {
     const id = localStorage.getItem("id")
-    dispatch(getProfile(JSON.parse(id)));
+    dispatch(getProfile(JSON.parse(id)))
   }, [dispatch])
 
  

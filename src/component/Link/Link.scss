@@ -15,6 +15,9 @@
     background-color: #6289e6 !important;
     padding-top: 10px;
 }
+
+
+
 .navs a {
     border-bottom: 1px solid #6a92ee;
     border-top: 1px solid #557ddb;
@@ -26,16 +29,25 @@
     text-decoration: none;
 }
 
+.navs a:hover {
+    background: #6289e6 none repeat scroll 0 0;
+    display: block;
+}
 
 @media screen and (max-width: 768px) {
+    .navs{
+        list-style-type: none !important;
+        background-color: steelblue !important;
+        padding-top: 10px;
+    }
     .text{
         color: white !important;
         font-size: 0px !important;
         font-weight: 0;
     }
     .navs a {
-        border-bottom: 0.1px solid #6a92ee;
-        border-top: 0.1px solid #557ddb;
+        border-bottom: 0px solid #6a92ee;
+        border-top: 0px solid #557ddb;
         color: #ffffff;
         display: block;
         font-size: 8px !important;
@@ -47,6 +59,10 @@
         color: white !important;
         text-align:center;
         height: 8vh;
+    }
+    .navs a:hover {
+        background: steelblue none repeat scroll 0 0;
+        display: block;
     }
 }
 

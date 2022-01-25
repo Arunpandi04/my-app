@@ -73,7 +73,6 @@ export const  getAllUser = () =>{
 }
 
 export const getProfile = (id)=> {
-  console.log("getProfile",id)
     return async(dispatch) => {
         const res = await axios.get(`https://secure-shore-10480.herokuapp.com/user/${id}`).catch((e)=>console.log("error"))      
       

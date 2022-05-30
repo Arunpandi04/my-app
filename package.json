@@ -27,6 +27,7 @@
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
     "redux-mock-store": "^1.5.4",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "sass": "^1.43.5",
     "web-vitals": "^1.1.2"
@@ -54,5 +55,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sonarqube-scanner": "^2.8.1"
   }
 }

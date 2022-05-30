@@ -1,5 +1,5 @@
 import axios from '../custom-axios'
-import { POST,GET,LOGIN,ERROR ,GETALL,PUT} from "./types"
+import { POST,GET,LOGIN,ERROR ,GETALL,PUT,LOGOUT} from "./types"
 import {  toast } from 'react-toastify'
 import moment from "moment"
 
@@ -135,3 +135,13 @@ export const socialSignin = (formData)=> {
       }
    };
 };
+
+
+export const signout =() =>{
+  return async(dispatch) => {
+  dispatch({
+    type: LOGOUT,
+    payload: [],
+})
+}
+}

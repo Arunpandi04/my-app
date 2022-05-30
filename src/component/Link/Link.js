@@ -1,14 +1,14 @@
 import React, { useEffect,useState } from 'react'
 import { useDispatch } from "react-redux"
-import { getProfile } from "../../store/Actions/postAction"
+import { getProfile ,signout} from "../../store/Actions/postAction"
 import { Navbar, Nav, Offcanvas, Dropdown} from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link,useLocation } from "react-router-dom"
 import './Link.scss'
-
-
+import { useNavigate } from 'react-router'
 export const Links = () => {
     const [user, setUser] = useState("")
-
+const navigate = useNavigate()
+const location = useLocation();
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -21,9 +21,11 @@ export const Links = () => {
         setUser(JSON.parse(Name))
       }, [])
 
-    const logout = (e) => {
+    const logout = () => {
         localStorage.clear()
         sessionStorage.clear()
+        dispatch(signout())
+        navigate('/', { state:{from: location?.pathname}})
     }
 
     return (
@@ -38,7 +40,7 @@ export const Links = () => {
                     <Dropdown.Menu>
                         <Dropdown.Item as={Link} to="/profile">Profile</Dropdown.Item>
                         <Dropdown.Item as={Link} to="/link">Link</Dropdown.Item>
-                        <Dropdown.Item  href="/" onClick={(e)=>logout(e)}>Signout</Dropdown.Item>
+                        <Dropdown.Item onClick={logout}>Signout</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Navbar>

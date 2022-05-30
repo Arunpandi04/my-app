@@ -32,13 +32,10 @@ const Dashboard = () => {
   useEffect(() => {
     dispatch(getAllUser())
   }, [selector.post, dispatch]);
-
- 
   const edit = (data) => {
     setShow(true)
     setId(data._id)
     moment.defaultFormat = "DD.MM.YYYY HH:mm"
-    console.log("msnk", data.dob, moment(data.dob, moment.defaultFormat).toDate())
     setInput({
       firstName: data.firstName,
       lastName: data.lastName,

@@ -1,4 +1,4 @@
-import { POST,GET,LOGIN,ERROR ,GETALL,PUT} from "../Actions/types"
+import { POST,GET,LOGIN,ERROR ,GETALL,PUT,LOGOUT} from "../Actions/types"
 
 const initialState = {
     posts: [],
@@ -29,6 +29,7 @@ const initialState = {
           isAuthenticate:true
         }
         case ERROR:
+        case LOGOUT:
           return {
             ...state,
             loading: true,

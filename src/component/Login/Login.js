@@ -3,12 +3,12 @@ import CustomInput from "../customField/CustomInput"
 import { useDispatch, useSelector } from "react-redux"
 import { Loggedin } from "../../store/Actions/postAction"
 import { Link } from "react-router-dom"
-import { Navigate } from 'react-router'
+import { Navigate, useLocation} from 'react-router'
 import Google from '../../GoogleAuth'
 import Microsoft from "../../MicrosoftAuth"
 import "../Form/Form.scss"
 
-const Login = () => {
+const Login = (props) => {
   const [input, setInput] = useState({ email: "", password: "" })
   const [showPass, setShowPass] = useState(false)
 
@@ -18,10 +18,14 @@ const Login = () => {
   };
   const selector = useSelector((state) => state.post)
   const dispatch = useDispatch()
+  const location = useLocation();
 
+// Get redirect location or provide fallback
+const from = location.state?.from || "/dashboard";
+
+console.log("first,",props,location)
   const onSubmit = (e) => {
-    e.preventDefault()
-    dispatch(Loggedin(input))
+      dispatch(Loggedin(input))
     if (!selector.loading) {
       setInput({
         email: "",
@@ -33,10 +37,10 @@ const Login = () => {
   const clickHandler = () => {
     setShowPass(!showPass)
   }
+if(selector.isAuthenticate){
+  return  <Navigate to={from} />
+}
 
-  if (!selector.loading) {
-    return <Navigate to='/dashboard' />
-  }
 
   return (
     <div className="input-container">
@@ -60,7 +64,7 @@ const Login = () => {
           clickHandler={clickHandler}
         />
         <div className="button">
-          <button className="btn" onClick={(e) => onSubmit(e)}>
+          <button className="btn" type="submit" onClick={(e) => onSubmit(e)}>
             submit
           </button>
         </div>
